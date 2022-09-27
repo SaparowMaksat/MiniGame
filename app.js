@@ -2,17 +2,20 @@ const board = document.querySelector('#board')
 const colors = ['#e74c6d', '#2e44ad', '#52f8db', '#f2de27', '#fecd73']
 const SQUARES_NUMBER = 15
 
+const audioSound = new Audio('./01.mp3')
+
 for (let i = 0; i < SQUARES_NUMBER; i++) {
 	const square = document.createElement('div')
 	square.className = 'square'
 
-	const audio = document.createElement('audio')
-	audio.src = './01.wav'
-
 	square.addEventListener('mouseover', () => setColor(square))
+	square.addEventListener('click', function () {
+		if (square) {
+			audioSound.play()
+		}
+	})
 	square.addEventListener('mouseleave', () => removeColor(square))
 
-	square.append(audio)
 	board.append(square)
 }
 
